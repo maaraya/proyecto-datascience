@@ -218,9 +218,54 @@ def main():
 
             st.success(f'Su entidad {evaluar(modelo_2.predict(df_temp2))} acceder a un crédito')
 
-                    
-            
+    if choice == 'Acerca de nuestro proyecto':
+        st.write('Quiero mi crédito ahora!!! es una plataforma digital online que permite conectar a empresas en necesidad de crédito con entidades financieras')
 
+        st.write("""<h3>¿Por qué elegir nuestra plataforma?</h3>
+
+* Nuestro plataforma dispone de un sistema de inteligencia artificial que permite evaluar de manera rápida y sencilla si la entidad es sujeta de crédito para la banca privada
+
+* La información de la entidades evaluadas favorablemente se disponibiliza en un pool de evaluaciones donde pueden ser rescatadas por alguna de las entidades financieras asociadas a nuestra plataforma
+        
+<h3>¿De dónde obtenemos la información?</h3>
+
+* Quinta Encuesta Longitudinal Empresarial (ELE-5)
+
+* Aplicada 2017
+
+* Muestra 6.480 empresas (ventas ≥ UF 800)
+
+* La encuesta está compuesta por 5 módulos. Para construir el modelo solo fue considerado el módulo de Contabilidad y Finanzas, tomando en consideración que solo los atributos financieros de la entidad, que resultan relevantes en la evaluación crediticia.
+
+* Se considera 32 preguntas, de las cuales el modelo utiliza sólo 7, correspondientes a 13 atributos.
+        """,unsafe_allow_html=True)            
+
+        image2 = Image.open('2.png')
+        image3 = Image.open('3.png')
+
+        col1, col2 = st.beta_columns([1,1])
+
+        with col1:
+            st.image(image2)
+        with col2:
+            st.image(image3)
+        st.write("""
+        <h3>¿Cómo predecir la posibilidad de acceso al crédito?</h3>
+
+*Definición del Vector Objetivo.*
+
+Utilizamos como base para construir el VO:
+
+* La entidad obtuvo crédito durante el período
+
+* Crédito fue aprobado, pero no aceptó las condiciones ofrecidas
+
+* Crédito fue aprobado, pero se desiste de tomar el crédito
+
+<h3>¿Cómo determinamos que variables son significativas para el modelo?</h3>""",unsafe_allow_html=True)    
+
+        image4 = Image.open('4.png')
+        st.image(image4)
 
 if __name__ == '__main__':
     main()
