@@ -14,9 +14,15 @@ image = Image.open('logo.png')
 
 st.sidebar.image(image, use_column_width = True)
 
+def evaluar(valor):
+                if valor==1:
+                    return 'Puede'
+                else:
+                    return 'No puede'
+
 def main():
     st.title("Quiero mi crédito ahora!")
-    menu = ['Evaluación', 'Acerca de nuestro proyecto']
+    menu = ['Evaluación', 'Acerca de nuestro proyecto', 'Test formulario']
     choice = st.sidebar.selectbox('Menu',menu)
 
     if choice == 'Evaluación':
@@ -185,11 +191,7 @@ def main():
                 modelo_1 = pickle.load(mo)
             
             #Función aplicar modelo
-            def evaluar(valor):
-                if valor==1:
-                    return 'Puede'
-                else:
-                    return 'No puede'
+            
             st.success('Su entidad 'f'{evaluar(modelo_1.predict(df_temp))}' ' acceder a un crédito')
 
             #st.success('Su entidad puede o no puede acceder a un crédito')
@@ -213,6 +215,32 @@ def main():
         
         if submit_button:
             st.success('Su evaluación ha sido ingresada con éxito el 'f'{fe}'' gracias!')
+
+    if choice == 'Test formulario':
+
+        df_temp2 = pd.DataFrame({'B001':1,'B002':0,'B011':1,'B012':0,'B018':1,'B021':0,'B029':1,
+                                    'B090':0,'B095':1,'B096':0,'B098':1,'B099':0,'B101':1,'log_C056':0},
+                                     index=(list(range(0,1))))
+
+        st.write(df_temp2)
+
+
+        with st.form(key='columns_in_form'):
+            cols = st.beta_columns(14)
+            columns = list(df_temp2.columns)
+            for i, col in enumerate(cols):
+                col.selectbox(columns[i],df_temp2[columns[i]], key=str(i))
+            submitted = st.form_submit_button('Submit')
+
+        if submitted:
+            
+            with open('Grupo2_model_vc_credito.sav', 'rb' ) as mo2:
+                modelo_2 = pickle.load(mo2)
+
+            st.success(f'Su entidad {evaluar(modelo_2.predict(df_temp2))} acceder a un crédito')
+
+                    
+            
 
 
 if __name__ == '__main__':
