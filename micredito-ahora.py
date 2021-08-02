@@ -240,8 +240,8 @@ def main():
 * Se considera 32 preguntas, de las cuales el modelo utiliza sólo 7, correspondientes a 13 atributos.
         """,unsafe_allow_html=True)            
 
-        image2 = Image.open('2.png')
-        image3 = Image.open('3.png')
+        image2 = Image.open('2.PNG')
+        image3 = Image.open('3.PNG')
 
         col1, col2 = st.beta_columns([1,1])
 
@@ -264,7 +264,7 @@ Utilizamos como base para construir el VO:
 
 <h3>¿Cómo determinamos que variables son significativas para el modelo?</h3>""",unsafe_allow_html=True)    
 
-        image4 = Image.open('4.png')
+        image4 = Image.open('4.PNG')
         st.image(image4)
 
 if __name__ == '__main__':
